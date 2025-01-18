@@ -1,3 +1,3 @@
 Write a bit about myself.
-# sTunes
-This repository is for exploring the sTunes database.
+# Data Analyst Portfolio Project Repository
+This repository holds all of the code and queries from the Portfolio Projects I create.
