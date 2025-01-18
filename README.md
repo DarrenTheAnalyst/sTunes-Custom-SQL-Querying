@@ -1,2 +1,2 @@
-# Data Analyst Portfolio Project Repository
-This repository holds all of the code and queries from the Portfolio Projects I create.
+# sTunes
+This repository is for exploring the sTunes database.
