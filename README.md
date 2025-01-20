@@ -1,5 +1,5 @@
 # sTunes_Custom_SQL_Querying
-The following is a list of certain syntax used with SQLite. 
+The following is a list of certain syntax used in the RDBMS SQLite. 
 
 # Clauses 
     GROUP BY (aggregate)
