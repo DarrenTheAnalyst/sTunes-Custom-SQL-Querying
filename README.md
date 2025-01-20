@@ -10,26 +10,23 @@ The following is a list of certain syntax used with SQLite.
     AVG
     COUNT
     SUM
-  # String Functions
+# String Functions
     CONCATENATION
     STRFTIME
     UPPER
-  # Other Functions
-    Round
+# Other Functions
+    ROUND
 # Joins
     INNER JOIN
-
 # Comparison Operators
     =
     >=
     <=
 # Logical Operators
     AND
-
 # Conventions
     tablename.FieldName
-    JOIN ON foreignkey.dimensiontable = primarykey.facttable
-    
+    JOIN ON foreignkey.dimensiontable = primarykey.facttable   
 # Other Syntax
     Alias
     SELECT subquery
