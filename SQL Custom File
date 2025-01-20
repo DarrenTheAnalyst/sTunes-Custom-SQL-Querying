@@ -1,1 +1,207 @@
+1. Description: Illustrate total and average invoice sales for the USA grouped by year.
+SELECT
+	strftime('%Y',InvoiceDate) AS [Year],
+	sum(total) AS [Total USA Sales],
+	round(avg(total),2) AS [Average USA Sales]
+FROM
+	invoices
+WHERE
+	BillingCountry = 'USA'
+GROUP BY
+	Year
+ORDER BY
+	Year DESC;
 
+2. Description: Illustrate total and average USA invoice sales per state.
+SELECT
+	strftime('%Y',InvoiceDate) AS [Year],
+	BillingState AS [State],
+	sum(total) AS [Total USA Sales per State],
+	round(avg(total),2) AS [Average USA Sales per State]
+FROM
+	invoices
+WHERE
+	BillingCountry = 'USA'
+GROUP BY
+	State,
+	Year
+ORDER BY
+	Year DESC;
+
+3. Provide a breakdown of invoice 397 by genre, genre price and track count.
+SELECT
+	g.name AS [Genre],
+	round(sum(ii.UnitPrice),2) AS [Genre Price],
+	count(t.TrackId) AS [Number of Tracks],
+	i.total AS [Invoice 397 Total]
+FROM
+	genres g
+INNER JOIN
+	tracks t
+ON
+	t.GenreId = g.GenreId
+INNER JOIN
+	invoice_items ii
+ON
+	ii.TrackId = t.TrackId
+INNER JOIN
+	invoices i
+ON	
+	ii.InvoiceId = i.InvoiceId
+WHERE
+	ii.InvoiceId = 397
+GROUP BY
+	Genre;
+
+4. Provide a breakdown of invoices by genre, genre unit price, invoice id, state and year.
+SELECT
+	g.name AS [Genre],
+	ii.UnitPrice AS [Genre Unit Price],
+	ii.InvoiceId,
+	i.BillingState AS [State],
+	strftime('%Y',InvoiceDate) AS [Year]
+FROM
+	genres g
+INNER JOIN
+	tracks t
+ON
+	t.GenreId = g.GenreId
+INNER JOIN
+	invoice_items ii
+ON
+	ii.TrackId = t.TrackId
+INNER JOIN
+	invoices i
+ON
+	ii.InvoiceId = i.InvoiceId
+WHERE
+	i.BillingCountry = 'USA'
+ORDER BY
+	Year DESC;
+
+5. Illustrate total USA sales per year per state per genre.
+SELECT	
+	g.name AS [Genre],
+	sum(t.UnitPrice) AS [Genre Total],
+	count(t.TrackId) AS [Number of Tracks],
+	i.BillingState AS [State],
+	strftime('%Y',InvoiceDate) AS [Year]
+FROM
+	invoices i
+INNER JOIN
+	invoice_items ii
+ON
+	i.InvoiceId = ii.InvoiceId
+INNER JOIN
+	tracks t
+ON
+	ii.TrackId = t.TrackId
+INNER JOIN
+	genres g
+ON
+	t.GenreId = g.GenreId
+WHERE
+	i.BillingCountry = 'USA'
+GROUP BY
+	State,
+	Year,
+	Genre
+ORDER BY
+	State,
+	Year DESC;
+
+6. What were the top ten invoices globally in 2013? What was the average invoice total in 2013 for comparison purposes?
+SELECT
+	c.FirstName||' '||c.LastName AS [Full Name],
+	i.CustomerId AS [Customer ID],
+	c.Country AS [Country],
+	i.total AS [2013 Invoice Amount],
+(SELECT
+	round(avg(i.total),2) 
+FROM
+	invoices i) AS [2013 Average Invoice Amount]
+FROM
+	invoices i
+INNER JOIN
+	customers c
+ON
+	i.CustomerId = c.CustomerId
+WHERE
+	i.InvoiceDate >= '2013-01-01' AND i.InvoiceDate <= '2013-12-31'
+ORDER BY
+	[2013 Invoice Amount] DESC
+LIMIT 10;
+
+7.
+Who were the top ten global customers in 2013? One customer can be associated with more than one invoice.
+SELECT
+	upper(c.FirstName||' '||c.LastName) AS [Full Name],
+	i.CustomerId AS [Customer ID],
+	c.Country AS [Country],
+	sum(i.total) AS [2013 Invoice Total]
+FROM
+	invoices i
+INNER JOIN
+	customers c
+ON
+	i.CustomerId = c.CustomerId
+WHERE
+	i.InvoiceDate >= '2013-01-01' AND i.InvoiceDate <= '2013-12-31'
+GROUP BY
+	[Customer ID]
+ORDER BY
+	[2013 Invoice Total] DESC
+LIMIT 10;
+
+8. What were the top 5 genres in sales in 2013 for the state of California?
+SELECT
+	strftime('%Y',i.InvoiceDate) AS [Year],
+	i.BillingState AS [State],
+	g.name AS [Genre],
+	sum(t.UnitPrice) AS [Total Sales]
+FROM
+	invoices i
+INNER JOIN
+	invoice_items ii
+ON
+	ii.InvoiceId = i.InvoiceId
+INNER JOIN
+	tracks t
+ON
+	ii.TrackId = t.TrackId
+INNER JOIN
+	genres g
+ON
+	t.GenreId = g.GenreId
+WHERE
+	i.BillingState = 'CA' AND (i.InvoiceDate >= '2013-01-01' AND i.InvoiceDate <= '2013-12-31')
+GROUP BY
+	Genre
+ORDER BY
+	[Total Sales] DESC
+LIMIT 5;
+
+9. List the track name and album title for the band Metallica.
+SELECT
+	t.name AS [Track Name],
+	a.Title AS [Album Title]
+FROM
+	tracks t
+INNER JOIN
+	albums a
+ON
+	t.AlbumId = a.AlbumId
+WHERE
+	t.Composer = 'Metallica';
+
+10. List the tracks for the album 'Appetite for Destruction'.
+SELECT
+	t.name AS [Track Name for Album Appetite for Destruction]
+FROM
+	tracks t
+INNER JOIN
+	albums a
+ON
+	t.AlbumId = a.AlbumId
+WHERE
+	a.Title = 'Appetite for Destruction';
