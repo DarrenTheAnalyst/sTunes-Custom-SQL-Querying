@@ -1,40 +1,37 @@
 # sTunes_Custom_SQL_Querying
 The following is a list of certain syntax used with SQLite. 
 
-Clauses:
-GROUP BY (aggregate)
-LIMIT
-ORDER BY
-WHERE (non-aggregate)
-
-Functions:
-  Aggregate
+# Clauses 
+    GROUP BY (aggregate)
+    LIMIT
+    ORDER BY
+    WHERE (non-aggregate)
+# Aggregate Functions
     AVG
     COUNT
     SUM
-  String
+  # String Functions
     CONCATENATION
     STRFTIME
     UPPER
-  Other
+  # Other Functions
     Round
-Joins:
-INNER JOIN
+# Joins
+    INNER JOIN
 
-Operators:
-  Comparison
+# Comparison Operators
     =
     >=
     <=
-  Logical
+# Logical Operators
     AND
 
-Other:
-Alias
-Conventions:
-  tablename.FieldName
-  JOIN
-    ON foreignkey.dimensiontable = primarykey.facttable
-SELECT subquery
+# Conventions
+    tablename.FieldName
+    JOIN ON foreignkey.dimensiontable = primarykey.facttable
+    
+# Other Syntax
+    Alias
+    SELECT subquery
 
   
