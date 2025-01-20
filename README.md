@@ -1,2 +1,2 @@
-# sTunes
-This repository is for exploring the sTunes database.
+# sTunes_Custom_Querying
+The following is a list of the functions I used.
