@@ -1,4 +1,5 @@
-1. Description: Illustrate total and average invoice sales for the USA grouped by year.
+1. Illustrate total and average invoice sales for the USA grouped by year.
+
 SELECT
 	strftime('%Y',InvoiceDate) AS [Year],
 	sum(total) AS [Total USA Sales],
@@ -12,7 +13,8 @@ GROUP BY
 ORDER BY
 	Year DESC;
 
-2. Description: Illustrate total and average USA invoice sales per state.
+2. Illustrate total and average USA invoice sales per state.
+
 SELECT
 	strftime('%Y',InvoiceDate) AS [Year],
 	BillingState AS [State],
@@ -29,6 +31,7 @@ ORDER BY
 	Year DESC;
 
 3. Provide a breakdown of invoice 397 by genre, genre price and track count.
+
 SELECT
 	g.name AS [Genre],
 	round(sum(ii.UnitPrice),2) AS [Genre Price],
@@ -54,6 +57,7 @@ GROUP BY
 	Genre;
 
 4. Provide a breakdown of invoices by genre, genre unit price, invoice id, state and year.
+
 SELECT
 	g.name AS [Genre],
 	ii.UnitPrice AS [Genre Unit Price],
@@ -80,6 +84,7 @@ ORDER BY
 	Year DESC;
 
 5. Illustrate total USA sales per year per state per genre.
+
 SELECT	
 	g.name AS [Genre],
 	sum(t.UnitPrice) AS [Genre Total],
@@ -111,6 +116,7 @@ ORDER BY
 	Year DESC;
 
 6. What were the top ten invoices globally in 2013? What was the average invoice total in 2013 for comparison purposes?
+
 SELECT
 	c.FirstName||' '||c.LastName AS [Full Name],
 	i.CustomerId AS [Customer ID],
@@ -119,7 +125,8 @@ SELECT
 (SELECT
 	round(avg(i.total),2) 
 FROM
-	invoices i) AS [2013 Average Invoice Amount]
+	invoices i
+) AS [2013 Average Invoice Amount]
 FROM
 	invoices i
 INNER JOIN
@@ -132,8 +139,8 @@ ORDER BY
 	[2013 Invoice Amount] DESC
 LIMIT 10;
 
-7.
-Who were the top ten global customers in 2013? One customer can be associated with more than one invoice.
+7. Who were the top ten global customers in 2013? One customer can be associated with more than one invoice.
+
 SELECT
 	upper(c.FirstName||' '||c.LastName) AS [Full Name],
 	i.CustomerId AS [Customer ID],
@@ -154,6 +161,7 @@ ORDER BY
 LIMIT 10;
 
 8. What were the top 5 genres in sales in 2013 for the state of California?
+
 SELECT
 	strftime('%Y',i.InvoiceDate) AS [Year],
 	i.BillingState AS [State],
@@ -182,6 +190,7 @@ ORDER BY
 LIMIT 5;
 
 9. List the track name and album title for the band Metallica.
+
 SELECT
 	t.name AS [Track Name],
 	a.Title AS [Album Title]
@@ -195,6 +204,7 @@ WHERE
 	t.Composer = 'Metallica';
 
 10. List the tracks for the album 'Appetite for Destruction'.
+
 SELECT
 	t.name AS [Track Name for Album Appetite for Destruction]
 FROM
