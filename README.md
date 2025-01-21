@@ -19,9 +19,9 @@ The following is a list of certain syntax used in the RDBMS SQLite.
 # Joins
     INNER JOIN
 # Comparison Operators
-    =
-    >=
-    <=
+    =   Equal to
+    >=  Greater than or equal to
+    <=  Less than or equal to
 # Logical Operators
     AND
 # Conventions
