@@ -1,5 +1,15 @@
 1. Illustrate total and average invoice sales for the USA grouped by year.
 
+Syntax used:
+STRFTIME
+SUM
+ROUND
+AVG
+NON AGGREGATE FILTER WHERE
+GROUP BY
+ORDER BY
+ALIAS
+
 SELECT
 	strftime('%Y',InvoiceDate) AS [Year],
 	sum(total) AS [Total USA Sales],
@@ -14,6 +24,16 @@ ORDER BY
 	Year DESC;
 
 2. Illustrate total and average USA invoice sales per state.
+
+Syntax used:
+STRFTIME
+SUM
+ROUND
+AVG
+NON AGGREGATE FILTER WHERE
+GROUP BY
+ORDER BY
+ALIAS
 
 SELECT
 	strftime('%Y',InvoiceDate) AS [Year],
@@ -31,6 +51,16 @@ ORDER BY
 	Year DESC;
 
 3. Provide a breakdown of invoice 397 by genre, genre price and track count.
+
+Syntax used:
+tablename.FieldName CONVENTION
+ROUND
+SUM
+COUNT
+INNER JOIN
+NON AGGREGRATE FILTER WHERE
+GROUP BY
+ALIAS
 
 SELECT
 	g.name AS [Genre],
@@ -58,6 +88,14 @@ GROUP BY
 
 4. Provide a breakdown of invoices by genre, genre unit price, invoice id, state and year.
 
+Syntax used:
+tablename.FieldName CONVENTION
+STRFTIME
+INNER JOIN
+NON AGGREGATE FILTER WHERE
+ORDER BY
+ALIAS
+
 SELECT
 	g.name AS [Genre],
 	ii.UnitPrice AS [Genre Unit Price],
@@ -84,6 +122,17 @@ ORDER BY
 	Year DESC;
 
 5. Illustrate total USA sales per year per state per genre.
+
+Syntax used:
+tablename.FieldName convention
+SUM
+COUNT
+STRFTIME
+INNER JOIN
+NON AGGREGATE FILTER WHERE
+GROUP BY
+ORDER BY
+ALIAS
 
 SELECT	
 	g.name AS [Genre],
@@ -117,6 +166,19 @@ ORDER BY
 
 6. What were the top ten invoices globally in 2013? What was the average invoice total in 2013 for comparison purposes?
 
+Syntax used:
+tablename.FieldName convention
+CONCATENATION
+SELECT SUB QUERY
+ROUND
+AVG
+INNER JOIN
+NON AGGREGATE FILTER WHERE
+COMPARISON OPERATORS
+ORDER BY
+LIMIT
+ALIAS
+
 SELECT
 	c.FirstName||' '||c.LastName AS [Full Name],
 	i.CustomerId AS [Customer ID],
@@ -141,6 +203,19 @@ LIMIT 10;
 
 7. Who were the top ten global customers in 2013? One customer can be associated with more than one invoice.
 
+Syntax used:
+tablename.FieldName convention
+UPPER
+CONCATENATION
+SUM
+INNER JOIN
+NON AGGREGATE FILTER WHERE
+COMPARISON OPERATORS
+GROUP BY
+ORDER BY
+LIMIT
+ALIAS
+
 SELECT
 	upper(c.FirstName||' '||c.LastName) AS [Full Name],
 	i.CustomerId AS [Customer ID],
@@ -161,6 +236,18 @@ ORDER BY
 LIMIT 10;
 
 8. What were the top 5 genres in sales in 2013 for the state of California?
+
+Syntax used:
+tablename.FieldName convention
+STRFTIME
+SUM
+INNER JOIN
+NON AGGREGATE FILTER WHERE
+COMPARISON OPERATORS
+GROUP BY
+ORDER BY
+LIMIT
+ALIAS
 
 SELECT
 	strftime('%Y',i.InvoiceDate) AS [Year],
@@ -191,6 +278,12 @@ LIMIT 5;
 
 9. List the track name and album title for the band Metallica.
 
+Syntax used:
+tablename.FieldName convention
+INNER JOIN
+NON AGGREGATE FILTER WHERE
+ALIAS
+
 SELECT
 	t.name AS [Track Name],
 	a.Title AS [Album Title]
@@ -204,6 +297,12 @@ WHERE
 	t.Composer = 'Metallica';
 
 10. List the tracks for the album 'Appetite for Destruction'.
+
+Syntax used:
+tablename.FieldName convention
+INNER JOIN
+NON AGGREGATE FILTER WHERE
+ALIAS
 
 SELECT
 	t.name AS [Track Name for Album Appetite for Destruction]
