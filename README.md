@@ -2,10 +2,10 @@
 The following is a list of certain syntax used in the RDBMS SQLite. 
 
 # Clauses 
-    GROUP BY (aggregate)
+    GROUP BY
     LIMIT
     ORDER BY
-    WHERE (non-aggregate)
+    WHERE
 # Aggregate Functions
     AVG
     COUNT
