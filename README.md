@@ -26,7 +26,7 @@ The following is a list of certain syntax used in the RDBMS SQLite.
     AND
 # Conventions
     tablename.FieldName
-    JOIN ON foreignkey.facttable = primarykey.dimensiontable   
+    JOIN ON facttable.foreignkey = dimensiontable.primarykey   
 # Other Syntax
     Alias
     SELECT subquery
